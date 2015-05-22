@@ -20,15 +20,25 @@
       <div class="todo-form">
 	data here
       </div>
-
-      <br>
-
-      <div class="todo-list">
-        <tr ng-repeat="todo in todoData">
-          <td>&nbsp;{{ todo.text }}</td><hr>
-        </tr>
-      </div>
-
+    </div>
+    <table class="todo-list", border="1", height = 200px, width = 100%>
+        <thead>
+     <tr>
+      <td>ID</td>
+      <td>Owner</td>
+      <td>Signature</td>
+      <td>Tip</td>
+     </tr>
+        </thead>
+        <tbody>
+     <tr ng-repeat="todo in todoData">
+      <td>{{todoData.id}}</td>
+      <td>{{todoData.owner}}</td>
+      <td>{{todoData.signature}}</td>
+      <td>{{todoData.tip}}</td>
+     </tr>
+        </tbody>
+    </table>
     </div>
 
     <!-- scripts -->

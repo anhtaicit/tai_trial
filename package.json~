@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "supervisor ./bin/www"
+	, "stop": "pkill --signal SIGINT myApp"
   },
   "dependencies": {
     "body-parser": "~1.10.2",

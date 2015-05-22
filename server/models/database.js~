@@ -1,19 +1,14 @@
 var pg = require('pg');
-var path = require('path');
-var connectionString = 'postgres://tai@localhost/bitmark_blockchain';
+var conString = "postgres://tai:abcd1234@localhost/bitmark_blockchain";
 
-var client = new pg.Client(connectionString);
-client.connect(function(err) {
-  if(err) {
-    return console.error('could not connect to postgres', err);
-  }
-  console.log(client);
-  var query = client.query('SELECT * FROM bitmark_transfers',function(err, result) {
-    if(err) {
-      return console.error('error running query', err);
-    }
-  query.on('row', function(row) 
-    console.log(row.name);
-  });
-  query.on('end', function() { client.end(); 
+var client = new pg.Client(conString);
+client.connect();
+
+var query = client.query("SELECT TOP 1 * FROM bitmark_transfers");
+query.on("row", function (row, result) {
+    result.addRow(row);
+});
+query.on("end", function (result) {
+    console.log(JSON.stringify(result.rows, null, "    "));
+    client.end();
 });
